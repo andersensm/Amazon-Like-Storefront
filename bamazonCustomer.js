@@ -13,9 +13,20 @@ var connection = mySQL.createConnection({
 
 connection.connect()
 
-connection.query("SELECT * FROM products", function(error,results) {
-  if(error) throw(error)
-  console.log("results", results)
-})
 
-connection.end()
+
+inquirer.prompt([{
+name: "name",
+type: "list",
+message: "Which product would you like to buy?",
+choices: ["Fire TV Stick", "Beats Headphones", "Computer Monitor", "Gym Bag", "Soccer Training Pants", "Running Shoes", "Real Estate Book", "Desserts Book", "Action Figures", "Legos"]
+}]).then(function(response) {
+  console.log(response)
+
+  connection.query("SELECT * FROM products", function(error,results) {
+    if(error) throw(error)
+
+  })
+  connection.end()
+
+})
