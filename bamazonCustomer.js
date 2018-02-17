@@ -21,21 +21,14 @@ inquirer.prompt([
   type: "list",
   message: "Which product would you like to buy?",
   choices: ["Fire TV Stick", "Beats Headphones", "Computer Monitor", "Gym Bag", "Soccer Training Pants", "Running Shoes", "Real Estate Book", "Desserts Book", "Action Figures", "Legos"]
-},
-{
-  name: "quantity",
-  type: "input",
-  message: "how much of" +
 }]).then(function(productResponse) {
   console.log(productResponse)
   inquirer.prompt([{
     name: "quantity",
     type: "input",
-    message: "How many" + productResponse + "do you want?"
+    message: "How many" + productResponse.product + "s" + " do you want?"
   }]).then(function(quantityResponse) {
     console.log(quantityResponse)
     })
   })
   connection.end()
-
-})
