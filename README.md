@@ -17,7 +17,7 @@ Designed to use the node.js terminal to access:
       }
       questionOne();
     })
-## **Video Example**
+## **Video Examples**
    * bAmazonCustomerVideo.mkv -- available in github
    * bAmazonManagerVideo.mkv -- available on github
 ## **Installation**
