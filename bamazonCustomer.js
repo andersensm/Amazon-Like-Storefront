@@ -1,7 +1,12 @@
 var inquirer = require("inquirer");
 var mySQL = require("mysql");
+var productIdResponse = ''
 var questionOneProduct = ''
+var questionOnePrice;
+var priceTotal;
 var questionOneQuantity = ''
+var quantityOneResponse;
+var totalAvailableProduct = ''
 
 require("dotenv").config();
 
@@ -30,7 +35,6 @@ function displayProducts() {
   questionOne();
 })
 }
-
 function questionOne() {
     inquirer.prompt([
     {
@@ -40,10 +44,12 @@ function questionOne() {
     }]).then(function(productResponse) {
       connection.query('SELECT * FROM products WHERE ?', {item_id: productResponse.product}, function(error,chosenProduct) {
         if (error) throw error;
-        console.log(chosenProduct)
+        productIdResponse = productResponse.product
+
         for (var i = 0; i<chosenProduct.length; i++){
           questionOneProduct = chosenProduct[i].product_name
           questionOneQuantity = chosenProduct[i].stock_quantity
+          questionOnePrice = chosenProduct[i].price
         }
         inquirer.prompt([
           {
@@ -52,8 +58,45 @@ function questionOne() {
           message: "How many " + questionOneProduct + "(s)" + " do you want, there are " + questionOneQuantity + " in-stock?"
           }
           ]).then(function(quantityResponse) {
-            console.log(quantityResponse)
+            quantityOneResponse = quantityResponse.quantity
+            quantitySqlResponse()
           })
       })
     })
+}
+
+function quantitySqlResponse() {
+  if (parseInt(quantityOneResponse) > questionOneQuantity) {
+    console.log("insufficient quantity")
+    restart()
+  } else {
+    priceTotal = parseInt(quantityOneResponse) * questionOnePrice
+    console.log("You have bought your " + quantityOneResponse + " " + questionOneProduct + "(s) for a total of " + "$" + priceTotal + ".")
+    totalAvailableProduct = questionOneQuantity - parseInt(quantityOneResponse)
+    var stockQuantity = {stock_quantity: totalAvailableProduct}
+    var item = {item_id: productIdResponse}
+    connection.query('UPDATE products SET ? WHERE ?',[stockQuantity, item], function(error, results) {
+      if (error) throw error;
+
+    })
+    restart()
+  }
+}
+
+function restart(){
+  inquirer.prompt([
+    {
+      name: "restart",
+      type: "list",
+      message: "Would you like to review our current inventory again?",
+      choices: ["YES", "NO"]
+    }
+  ]).then(function(restartResponse) {
+    console.log(restartResponse.restart)
+    if(restartResponse.restart === 'YES'){
+      displayProducts()
+    } else {
+      connection.end()
+    }
+  })
 }
