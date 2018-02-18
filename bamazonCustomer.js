@@ -25,13 +25,7 @@ connection.connect(function(error) {
 
 function displayProducts() {
   connection.query('SELECT * FROM products', function(error,results) {
-    for(var i = 0; i < results.length; i++) {
-      console.log("---------------------")
-      console.log("Product ID: " + results[i].item_id)
-      console.log("Product Name: " + results[i].product_name)
-      console.log("Price: $" + results[i].price)
-      console.log("In-Stock Quantity: " + results[i].stock_quantity)
-  }
+  queryResults(error,results);
   questionOne();
 })
 }
@@ -99,4 +93,15 @@ function restart(){
       connection.end()
     }
   })
+}
+
+function queryResults(error,results){
+  if (error) throw error;
+  for (var i = 0; i < results.length; i++) {
+    console.log("---------------------")
+    console.log("Product ID: " + results[i].item_id)
+    console.log("Product Name: " + results[i].product_name)
+    console.log("Price: $" + results[i].price)
+    console.log("In-Stock Quantity: " + results[i].stock_quantity)
+  }
 }
