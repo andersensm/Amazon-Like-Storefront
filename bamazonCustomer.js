@@ -1,5 +1,7 @@
 var inquirer = require("inquirer");
 var mySQL = require("mysql");
+var questionOneProduct = ''
+var questionOneQuantity = ''
 
 require("dotenv").config();
 
@@ -36,20 +38,22 @@ function questionOne() {
       type: "input",
       message: "Which product would you like to buy, (product ID)?",
     }]).then(function(productResponse) {
-      connection.query('SELECT * FROM products WHERE ?', {item_id: productResponse.product}, function(error,results) {
+      connection.query('SELECT * FROM products WHERE ?', {item_id: productResponse.product}, function(error,chosenProduct) {
         if (error) throw error;
-        console.log(results)
-
+        console.log(chosenProduct)
+        for (var i = 0; i<chosenProduct.length; i++){
+          questionOneProduct = chosenProduct[i].product_name
+          questionOneQuantity = chosenProduct[i].stock_quantity
+        }
         inquirer.prompt([
           {
           name: "quantity",
           type: "input",
-          message: "How many " + productResponse.product + "(s)" + " do you want?"
+          message: "How many " + questionOneProduct + "(s)" + " do you want, there are " + questionOneQuantity + " in-stock?"
           }
           ]).then(function(quantityResponse) {
             console.log(quantityResponse)
           })
       })
-
     })
 }
