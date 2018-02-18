@@ -18,7 +18,7 @@ Designed to use the node.js terminal to access:
       questionOne();
     })
 ## **Video Example**
-   bAmazonCustomerVideo.mpk--available in github
+   bAmazonCustomerVideo.mkv--available in github
 ## **Installation**
 Prerequisites:
   * Fork and/or clone repository to your local environment.
