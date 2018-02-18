@@ -11,24 +11,45 @@ var connection = mySQL.createConnection({
   database: "bamazon"
 })
 
-connection.connect()
+connection.connect(function(error) {
+  if(error) throw error;
+  displayProducts();
+})
 
+function displayProducts() {
+  connection.query('SELECT * FROM products', function(error,results) {
+    for(var i = 0; i < results.length; i++) {
+      console.log("---------------------")
+      console.log("Product ID: " + results[i].item_id)
+      console.log("Product Name: " + results[i].product_name)
+      console.log("Price: $" + results[i].price)
+      console.log("In-Stock Quantity: " + results[i].stock_quantity)
+  }
+  questionOne();
+})
+}
 
+function questionOne() {
+    inquirer.prompt([
+    {
+      name: "product",
+      type: "input",
+      message: "Which product would you like to buy, (product ID)?",
+    }]).then(function(productResponse) {
+      connection.query('SELECT * FROM products WHERE ?', {item_id: productResponse.product}, function(error,results) {
+        if (error) throw error;
+        console.log(results)
 
-inquirer.prompt([
-{
-  name: "product",
-  type: "list",
-  message: "Which product would you like to buy?",
-  choices: ["Fire TV Stick", "Beats Headphones", "Computer Monitor", "Gym Bag", "Soccer Training Pants", "Running Shoes", "Real Estate Book", "Desserts Book", "Action Figures", "Legos"]
-}]).then(function(productResponse) {
-  console.log(productResponse)
-  inquirer.prompt([{
-    name: "quantity",
-    type: "input",
-    message: "How many" + productResponse.product + "s" + " do you want?"
-  }]).then(function(quantityResponse) {
-    console.log(quantityResponse)
+        inquirer.prompt([
+          {
+          name: "quantity",
+          type: "input",
+          message: "How many " + productResponse.product + "(s)" + " do you want?"
+          }
+          ]).then(function(quantityResponse) {
+            console.log(quantityResponse)
+          })
+      })
+
     })
-  })
-  connection.end()
+}
