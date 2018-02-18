@@ -40,7 +40,7 @@ function questionOne() {
         if (error) throw error;
         productIdResponse = productResponse.product
 
-        for (var i = 0; i<chosenProduct.length; i++){
+        for (var i = 0; i < chosenProduct.length; i++){
           questionOneProduct = chosenProduct[i].product_name
           questionOneQuantity = chosenProduct[i].stock_quantity
           questionOnePrice = chosenProduct[i].price
