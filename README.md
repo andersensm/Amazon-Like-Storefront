@@ -6,7 +6,7 @@ Designed to use the node.js terminal to access:
 ## **Code Style**
  * Object-Oriented Programming (OOP).
 ## **Code Example**
-  function displayProducts() {
+
       connection.query('SELECT * FROM products', function(error,results) {
         for(var i = 0; i < results.length; i++) {
           console.log("---------------------")
@@ -17,7 +17,8 @@ Designed to use the node.js terminal to access:
       }
       questionOne();
     })
-  }
+## **Video Example**
+   bAmazonCustomerVideo.mkv--available in github
 ## **Installation**
 Prerequisites:
   * Fork and/or clone repository to your local environment.
