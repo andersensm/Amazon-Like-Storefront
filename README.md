@@ -19,8 +19,8 @@ Designed to use the node.js terminal to access:
     })
 ## **Video Tutorials**
    * To access the .webm files, open Google Chrome and ctrl + 0, then select each file
-      * bAmazonCustomer.webm -- available in github
-      * bAmazonManager.webm -- available on github
+      * bAmazonCustomerTutorial.webm -- available in github
+      * bAmazonManagerTutorial.webm -- available on github
 ## **Installation**
 Prerequisites:
   * Fork and/or clone repository to your local environment.
