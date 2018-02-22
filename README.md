@@ -34,7 +34,7 @@ Requirements:
     * Open Bash/Node Terminal, path to folder location containing: bamazonCustomer.js
     * Type: node bamazonCustomer.js
     * A prompt will appear, an ID per the question and then type a quantity of that particular product.
-    * If the quantity desired is more then the current inventory, then the program will be exited, otherwise the script will                     provide the quantity requested and the total $ amount and simultaneously updated mySQL with the quantity that was                       requested from the total quantity.
+    * If the quantity desired is more then the current inventory, then the program will be exited, otherwise the script will                     provide the quantity requested and the total $ amount and simultaneously updated mySQL with the quantity that was requested from the total quantity.
   ### Manager: Point of View
      * Open Bash/Node Terminal, path to folder location containing: bamazonManager.js
      * Type: node bamazonManager.js
