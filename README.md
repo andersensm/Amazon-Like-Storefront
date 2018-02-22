@@ -30,19 +30,19 @@ Requirements:
   * mySQL account with their own credentials and .env file per the .js requirements
   * Access package.json for additional details to other npm requirements
 ## **How to use**
-  * Customer: Point of View
-        * Open Bash/Node Terminal, path to folder location containing: bamazonCustomer.js
-        * Type: node bamazonCustomer.js
-          * A prompt will appear, an ID per the question and then type a quantity of that particular product.
-        * If the quantity desired is more then the current inventory, then the program will be exited, otherwise the script will                     provide the quantity requested and the total $ amount and simultaneously updated mySQL with the quantity that was                       requested from the total quantity.
-  * Manager: Point of View
-        * Open Bash/Node Terminal, path to folder location containing: bamazonManager.js
-        * Type: node bamazonManager.js
-        * A prompt will appear with 4 available options:
-            * Review all current inventory(in mySQL)
-            * Review low invetory products
-            * Add quantity to available products
-            * Add new item to inventory
+  ### Customer: Point of View
+    * Open Bash/Node Terminal, path to folder location containing: bamazonCustomer.js
+    * Type: node bamazonCustomer.js
+    * A prompt will appear, an ID per the question and then type a quantity of that particular product.
+    * If the quantity desired is more then the current inventory, then the program will be exited, otherwise the script will                     provide the quantity requested and the total $ amount and simultaneously updated mySQL with the quantity that was                       requested from the total quantity.
+  ### Manager: Point of View
+     * Open Bash/Node Terminal, path to folder location containing: bamazonManager.js
+     * Type: node bamazonManager.js
+     * A prompt will appear with 4 available options:
+          * Review all current inventory(in mySQL)
+          * Review low invetory products
+          * Add quantity to available products
+          * Add new item to inventory
 ## **Credits**
 This application was built by Sean Andersen, Full Stack Web Development Students at George Washington University's Coding Boot Camp.
 License
